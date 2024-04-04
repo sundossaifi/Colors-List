@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  ColorsListTask
 //
-//  Created by User on 4/4/24.
+//  Created by User on 4/2/24.
 //
 
 import UIKit
