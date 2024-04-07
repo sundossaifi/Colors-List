@@ -114,11 +114,18 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Colors" id="7W5-gT-ERN"/>
+                    <navigationItem key="navigationItem" title="Colors" id="7W5-gT-ERN">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="mBY-Ib-b1h">
+                            <connections>
+                                <action selector="editColorsOrder:" destination="BYZ-38-t0r" id="aEo-Hx-CmF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="colorDescriptionLabel" destination="iYP-pC-yRc" id="BmQ-Dd-XmQ"/>
                         <outlet property="colorDescriptionView" destination="C3E-Rd-nhK" id="jhs-fl-Ehm"/>
                         <outlet property="colorsTableView" destination="7Ev-pX-9Dr" id="WBM-23-nVD"/>
+                        <outlet property="editButton" destination="mBY-Ib-b1h" id="FVt-RI-BT6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

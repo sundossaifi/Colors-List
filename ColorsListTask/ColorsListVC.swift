@@ -12,28 +12,27 @@ class ColorsListVC: UIViewController {
     @IBOutlet var colorsTableView: UITableView!
     @IBOutlet var colorDescriptionLabel: UILabel!
     @IBOutlet var colorDescriptionView: UIView!
+    @IBOutlet var editButton: UIBarButtonItem!
     
-    let colorsList:[ColorInformation] = [
-        ColorInformation(colorName: "Red", colorDescription: "Red Description", color: .systemRed),
-        ColorInformation(colorName: "Blue", colorDescription: "Blue Description", color: .systemBlue),
-        ColorInformation(colorName: "Green", colorDescription: "Green Description", color: .systemGreen),
-        ColorInformation(colorName: "Gray", colorDescription: "Gray Description", color: .systemGray),
-        ColorInformation(colorName: "Red", colorDescription: "Red Description", color: .systemRed),
-        ColorInformation(colorName: "Blue", colorDescription: "Blue Description", color: .systemBlue),
-        ColorInformation(colorName: "Green", colorDescription: "Green Description", color: .systemGreen),
-        ColorInformation(colorName: "Gray", colorDescription: "Gray Description", color: .systemGray),
-        ColorInformation(colorName: "Red", colorDescription: "Red Description", color: .systemRed),
-        ColorInformation(colorName: "Blue", colorDescription: "Blue Description", color: .systemBlue),
-        ColorInformation(colorName: "Green", colorDescription: "Green Description", color: .systemGreen),
-        ColorInformation(colorName: "Gray", colorDescription: "Gray Description", color: .systemGray),
-        ColorInformation(colorName: "Red", colorDescription: "Red Description", color: .systemRed),
-        ColorInformation(colorName: "Blue", colorDescription: "Blue Description", color: .systemBlue),
-        ColorInformation(colorName: "Green", colorDescription: "Green Description", color: .systemGreen),
-        ColorInformation(colorName: "Gray", colorDescription: "Gray Description", color: .systemGray)
-    ]
-
+    var colorsList: [ColorInformationModel] = []
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorsList = UserDefaultsManager.loadColors() ?? []
+        if colorsList.isEmpty {
+            colorsList = UserDefaultsManager.addDefaultColors()
+            UserDefaultsManager.saveColors(colorsList: colorsList)
+        }
+    }
+    
+    @IBAction func editColorsOrder(_ sender: Any) {
+        colorsTableView.isEditing.toggle() 
+        if colorsTableView.isEditing {
+            editButton.title = "Done"
+
+        } else {
+            editButton.title = "Edit"
+        }
     }
 }
 
@@ -46,7 +45,7 @@ extension ColorsListVC: UITableViewDelegate, UITableViewDataSource {
         let cell = colorsTableView.dequeueReusableCell(withIdentifier: "colorCell", for: indexPath)
         let colorInfo = colorsList[indexPath.row]
         cell.backgroundColor = colorInfo.color
-        cell.textLabel?.text = colorInfo.colorName
+        cell.textLabel?.text = colorInfo.color?.accessibilityName
         cell.textLabel?.textColor = .systemBackground
         return cell
     }
@@ -54,7 +53,26 @@ extension ColorsListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let colorInfo = colorsList[indexPath.row]
         colorDescriptionView.backgroundColor = colorInfo.color
-        colorDescriptionLabel.text = colorInfo.colorDescription
+        colorDescriptionLabel.text = colorInfo.description
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let item = colorsList[sourceIndexPath.row]
+        colorsList.remove(at: sourceIndexPath.row)
+        colorsList.insert(item, at: destinationIndexPath.row)
+        UserDefaultsManager.saveColors(colorsList: colorsList)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }
