@@ -29,9 +29,9 @@ class ColorsListVC: UIViewController {
         colorsTableView.isEditing.toggle() 
         if colorsTableView.isEditing {
             editButton.title = "Done"
-
         } else {
             editButton.title = "Edit"
+            UserDefaultsManager.saveColors(colorsList: colorsList)
         }
     }
 }
@@ -65,7 +65,6 @@ extension ColorsListVC: UITableViewDelegate, UITableViewDataSource {
         let item = colorsList[sourceIndexPath.row]
         colorsList.remove(at: sourceIndexPath.row)
         colorsList.insert(item, at: destinationIndexPath.row)
-        UserDefaultsManager.saveColors(colorsList: colorsList)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
