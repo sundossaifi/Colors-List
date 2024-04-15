@@ -16,6 +16,9 @@
 		CE158B812BBB866D00D1954B /* ColorsInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE158B802BBB866D00D1954B /* ColorsInformationModel.swift */; };
 		CE1E37C12BCB2A8C00DAF4A4 /* ColorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E37C02BCB2A8C00DAF4A4 /* ColorsViewModel.swift */; };
 		CE96EA7A2BC0A697001941AC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96EA792BC0A697001941AC /* UserDefaultsManager.swift */; };
+		CECFF4302BCD812500A34C99 /* TableViewCellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFF42F2BCD812500A34C99 /* TableViewCellNib.swift */; };
+		CEEE90882BCC8BCC0093CA82 /* ColorsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEE90872BCC8BCC0093CA82 /* ColorsListCell.xib */; };
+		CEEE90892BCC8BCC0093CA82 /* ColorsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE90862BCC8BCC0093CA82 /* ColorsListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		CE158B802BBB866D00D1954B /* ColorsInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsInformationModel.swift; sourceTree = "<group>"; };
 		CE1E37C02BCB2A8C00DAF4A4 /* ColorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewModel.swift; sourceTree = "<group>"; };
 		CE96EA792BC0A697001941AC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		CECFF42F2BCD812500A34C99 /* TableViewCellNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellNib.swift; sourceTree = "<group>"; };
+		CEEE90862BCC8BCC0093CA82 /* ColorsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsListCell.swift; sourceTree = "<group>"; };
+		CEEE90872BCC8BCC0093CA82 /* ColorsListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 		CE158B692BBB5AEA00D1954B /* ColorsListTask */ = {
 			isa = PBXGroup;
 			children = (
+				CECFF42E2BCD7F6700A34C99 /* Extensions */,
 				CE1E37BF2BCB1D9600DAF4A4 /* Manager */,
 				CE1E37BE2BCB1BD600DAF4A4 /* Resources */,
 				CE1E37BD2BCB1A9700DAF4A4 /* Model */,
@@ -78,6 +85,7 @@
 		CE1E37BA2BCB1A4000DAF4A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CEEE90852BCC8BAA0093CA82 /* ColorsListCell */,
 				CE158B702BBB5AEA00D1954B /* Main.storyboard */,
 				CE158B752BBB5AEB00D1954B /* LaunchScreen.storyboard */,
 			);
@@ -122,6 +130,23 @@
 				CE96EA792BC0A697001941AC /* UserDefaultsManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		CECFF42E2BCD7F6700A34C99 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CECFF42F2BCD812500A34C99 /* TableViewCellNib.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CEEE90852BCC8BAA0093CA82 /* ColorsListCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEEE90862BCC8BCC0093CA82 /* ColorsListCell.swift */,
+				CEEE90872BCC8BCC0093CA82 /* ColorsListCell.xib */,
+			);
+			path = ColorsListCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE158B742BBB5AEB00D1954B /* Assets.xcassets in Resources */,
+				CEEE90882BCC8BCC0093CA82 /* ColorsListCell.xib in Resources */,
 				CE158B772BBB5AEB00D1954B /* Base in Resources */,
 				CE158B722BBB5AEA00D1954B /* Base in Resources */,
 			);
@@ -200,6 +226,8 @@
 				CE1E37C12BCB2A8C00DAF4A4 /* ColorsViewModel.swift in Sources */,
 				CE158B6B2BBB5AEA00D1954B /* AppDelegate.swift in Sources */,
 				CE158B812BBB866D00D1954B /* ColorsInformationModel.swift in Sources */,
+				CECFF4302BCD812500A34C99 /* TableViewCellNib.swift in Sources */,
+				CEEE90892BCC8BCC0093CA82 /* ColorsListCell.swift in Sources */,
 				CE158B6D2BBB5AEA00D1954B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

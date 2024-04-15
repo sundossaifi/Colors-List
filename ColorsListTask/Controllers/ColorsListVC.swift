@@ -14,46 +14,38 @@ class ColorsListVC: UIViewController {
     @IBOutlet var colorDescriptionView: UIView!
     @IBOutlet var editButton: UIBarButtonItem!
     
-    var colorsList: [ColorInformationModel] = []
+    var viewModel = ColorsViewModel()
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        colorsList = UserDefaultsManager.loadColors() ?? []
-        if colorsList.isEmpty {
-            colorsList = UserDefaultsManager.addDefaultColors()
-            UserDefaultsManager.saveColors(colorsList: colorsList)
-        }
+        colorsTableView.register(ColorsListCell.nib(), forCellReuseIdentifier: ColorsListCell.identifier)
     }
     
     @IBAction func editColorsOrder(_ sender: Any) {
-        colorsTableView.isEditing.toggle() 
-        if colorsTableView.isEditing {
-            editButton.title = "Done"
-        } else {
-            editButton.title = "Edit"
-            UserDefaultsManager.saveColors(colorsList: colorsList)
-        }
+        let title = viewModel.toggleEditing()
+        editButton.title = title
+        colorsTableView.setEditing(!colorsTableView.isEditing, animated: true)
+        colorsTableView.reloadData()
     }
 }
 
 extension ColorsListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return colorsList.count
+        return viewModel.getCellsCount(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = colorsTableView.dequeueReusableCell(withIdentifier: "colorCell", for: indexPath)
-        let colorInfo = colorsList[indexPath.row]
-        cell.backgroundColor = colorInfo.color
-        cell.textLabel?.text = colorInfo.color?.accessibilityName
-        cell.textLabel?.textColor = .systemBackground
+        let cell = colorsTableView.dequeueReusableCell(withIdentifier: ColorsListCell.identifier, for: indexPath) as! ColorsListCell
+        cell.backgroundColor = viewModel.color(at: indexPath.row)
+        cell.colorNameLabel.text = viewModel.color(at: indexPath.row)?.accessibilityName
+        cell.colorNameLabel.textColor = .systemBackground
+        cell.selectButton.isHidden = !viewModel.isSelectButtonVisible
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let colorInfo = colorsList[indexPath.row]
-        colorDescriptionView.backgroundColor = colorInfo.color
-        colorDescriptionLabel.text = colorInfo.description
+        colorDescriptionView.backgroundColor = viewModel.color(at: indexPath.row)
+        colorDescriptionLabel.text = viewModel.colorDescription(at: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -62,9 +54,7 @@ extension ColorsListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let item = colorsList[sourceIndexPath.row]
-        colorsList.remove(at: sourceIndexPath.row)
-        colorsList.insert(item, at: destinationIndexPath.row)
+        viewModel.moveColor(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
