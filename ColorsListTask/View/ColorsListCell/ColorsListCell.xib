@@ -17,33 +17,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-MC-8GB">
-                        <rect key="frame" x="8" y="10" width="24" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="24" id="8ux-ZK-cre"/>
-                            <constraint firstAttribute="height" constant="24" id="fEL-65-vjT"/>
-                        </constraints>
-                        <color key="tintColor" systemColor="systemBackgroundColor"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
-                        <connections>
-                            <action selector="selectButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KvA-Oo-1f3"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLm-7u-1Et">
-                        <rect key="frame" x="40" y="8" width="272" height="28"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-Ar-t43">
+                        <rect key="frame" x="10" y="10" width="300" height="24"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-MC-8GB">
+                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="8ux-ZK-cre"/>
+                                    <constraint firstAttribute="height" constant="24" id="fEL-65-vjT"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="selectButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KvA-Oo-1f3"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLm-7u-1Et">
+                                <rect key="frame" x="29" y="0.0" width="271" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="LHr-MC-8GB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0Su-Dr-h1k"/>
-                    <constraint firstItem="LHr-MC-8GB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="GO6-bo-8BF"/>
-                    <constraint firstItem="cLm-7u-1Et" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="f8b-Im-ovf"/>
-                    <constraint firstAttribute="bottom" secondItem="cLm-7u-1Et" secondAttribute="bottom" constant="8" id="lyE-C9-UmR"/>
-                    <constraint firstItem="cLm-7u-1Et" firstAttribute="leading" secondItem="LHr-MC-8GB" secondAttribute="trailing" constant="8" id="rTw-E9-uYw"/>
-                    <constraint firstAttribute="trailing" secondItem="cLm-7u-1Et" secondAttribute="trailing" constant="8" id="ydR-2x-2ma"/>
+                    <constraint firstAttribute="trailing" secondItem="eoT-Ar-t43" secondAttribute="trailing" constant="10" id="Ko7-On-t6x"/>
+                    <constraint firstAttribute="bottom" secondItem="eoT-Ar-t43" secondAttribute="bottom" constant="10" id="LXx-t3-e53"/>
+                    <constraint firstItem="eoT-Ar-t43" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Ni5-F5-zPU"/>
+                    <constraint firstItem="eoT-Ar-t43" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="VTA-oT-15I"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
